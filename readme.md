@@ -1,39 +1,52 @@
-> [!NOTE]  
+> [!NOTE]
 > The English translation for this exercise can be found in [this file](./readme.en.md).
 
 # Soveltava tehtävä: "Commit History"
 
-Tämä kurssin viimeinen tehtävärepositorio sisältää erilaisia harjoitteita, joiden avulla syvennetään ja sovelletaan aikaisempien viikkojen aiheita. Tehtävien ratkaisemiseksi on annettu enemmän vapauksia, joten voitkin ratkaista ne monilla eri tavoilla.
+![Commit-historia pizzoina: jokainen commit osoittaa omaan parent-commitiinsa ja ensimmäisen parent on None](img/chapters/commits.svg)
 
-Suosittelemmekin pohtimaan, olisiko erillisten luokkien luominen, stream-operaatiot tai vaikka map-tietorakenne avuksi eri ongelmien ratkaisemisessa.
+Tämä kurssin viimeinen tehtävärepositorio sisältää harjoituksia, joilla syvennetään ja sovelletaan aiempien viikkojen aiheita. Ratkaisuille on annettu enemmän vapauksia, joten voit ratkaista ne monella tavalla. Pohdi, olisiko erillisistä luokista, stream-operaatioista tai map-tietorakenteesta apua.
 
+## Tehtävän aloittaminen
 
-## Tehtävien testaaminen
+Forkkaa ensin tämä repositorio omaan GitHub-repositorioosi GitHubin **Fork**-painikkeella ja kloonaa vasta sitten oma forkkisi koneellesi:
 
-Tämä tehtäväpaketti sisältää valmiita testejä ratkaisujesi toimivuuden varmistamiseksi. Valmiit testit varmistavat, että koodisi lopputulos on oikea. Koska vapaudet tehtävän ratkaisujen suhteen ovat aiempaa vapaammat, tulet todennäköisesti tarvitsemaan erilaisia apumetodeja ja -luokkia, joiden toimivuuden varmistamiseksi suosittelemme kirjoittamaan lisäksi omia testejä. Vaihtoehtoisesti voit kirjoittaa omia main-metodeja, joiden avulla tutkit koodisi toimivuutta.
+```sh
+git clone https://github.com/<oma-github-tunnuksesi>/9-commit-history.git
+```
 
-Testeihin perehtyminen ei ole tehtävän suorittamiseksi välttämätöntä, mutta testien suorittaminen on ehdottomasti suositeltua, jotta saat palautetta tekemiesi ratkaisujen toimivuudesta.
+Avaa kloonattu projekti koodieditorissasi.
 
-Voit suorittaa yksikkötestit tuttuun tapaan koodieditorisi testaustyökalulla tai Gradle-automaatiotyökalulla.
+## Testaaminen
 
-> [!NOTE]
-> Tehtävänannossa määritettyjen metodien ja luokkien nimien, parametrien tai paluuarvojen muuttaminen ei ole sallittua, mutta **suosittelemme** että toteutat niiden lisäksi omia luokkia ja metodeita.
->
-> Saat kirjoittaa halutessasi lisää testejä, mutta älä muuta tai poista valmiiksi kirjoitettuja testejä.
+Tehtävän osille on valmiit [JUnit](https://junit.org/)-yksikkötestit hakemistossa [src/test/java](./src/test/java/). Kunkin osan kohdalla kerrotaan, millä testiluokalla se arvioidaan. Voit ajaa testit koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradlella](https://docs.gradle.org/current/userguide/java_testing.html), esimerkiksi:
 
+```
+./gradlew test --tests CommitIdsTest        # unix
+.\gradlew.bat test --tests CommitIdsTest    # windows
+```
 
-## Tehtävän palauttaminen
+Lisää komennon loppuun `--info`, jos haluat tarkemmat tiedot epäonnistuneista testeistä. Testien tekniseen toteutukseen ei tarvitse perehtyä, ja voit kokeilla ratkaisuasi myös omalla `main`-metodilla. Saat kirjoittaa omia testejä lisää, mutta älä muuta tai poista valmiita testejä.
 
-Tämän tehtävän ratkaisuja ei arvioi mikään GitHub Actions -tehtävävirta (YAML-workflow), eikä `git push` käynnistä arviointia. Arvioinnin tekee kurssijärjestelmä: lähetä ratkaisusi tehtävän sivulla kurssijärjestelmässä, jolloin koodisi käännetään ja sille ajetaan tehtävän JUnit-testit.
+Älä muuta valmiiden luokkien, metodien ja konstruktorien nimiä, parametreja tai paluuarvojen tyyppejä, sillä silloin testit eivät käänny. Saat tiedoston alkuperäisen version takaisin komennolla `git restore <tiedoston polku>` tai kurssijärjestelmän **Palauta lähtökoodi** -toiminnolla.
 
-Pushaa lopuksi kaikki julkiseen GitHub-repositorioosi ja paina tehtävän sivulla **Lähetä tarkistettavaksi** -nappia. Kurssijärjestelmän botti käy silloin hakemassa koodisi repositoriostasi ja tarkistaa sen samoilla testeillä.
+Koska ratkaisuille on annettu aiempaa enemmän vapauksia, tarvitset todennäköisesti apumetodeja ja -luokkia. **Suosittelemme** kirjoittamaan niille omia testejä tai `main`-metodeja.
 
-💡 *Voit lähettää ratkaisusi niin monta kertaa kuin on tarpeen luvun määräaikaan asti. Voimaan jää paras saamasi tulos.*
+## Palauttaminen ja pisteet
+
+Jokaisella tehtävän osalla on kurssijärjestelmässä (https://jtjuslin.kapsi.fi/java) oma sivunsa, jonka koodikentissä on osan koodipohja. Kopioi ratkaisusi koodikenttiin tai kirjoita se suoraan niihin. **Testaa ilman palautusta** ajaa osan testit tallentamatta pisteitä, ja **Lähetä** palauttaa ratkaisun. Jokainen testiluokka hyväksytään vain, jos sen kaikki testit menevät läpi, ja pisteet jaetaan hyväksyttyjen testiluokkien mukaan.
+
+**Pisteet kahdessa vaiheessa**
+
+1. Kun ratkaisusi menee läpi kurssijärjestelmässä, saat osasta **puolet pisteistä**.
+2. Pushaa lopuksi kaikki julkiseen GitHub-repositorioosi. Paina tämän jälkeen osan sivulla **Lähetä tarkistettavaksi** -nappia. Kun testit menevät läpi, saat osasta **täydet pisteet**. Repositorio saa jäädä julkiseksi.
+
+GitHubissa ei ole arvioivaa YAML-tehtävävirtaa (GitHub Actions -workflowta), eikä `git push` käynnistä arviointia. Kun painat **Lähetä tarkistettavaksi**, kurssijärjestelmän botti hakee koodisi repositoriostasi ja tarkistaa sen samoilla testeillä. Molemmat vaiheet pitää tehdä ennen luvun määräaikaa. Voit lähettää ratkaisusi niin monta kertaa kuin tarvitset, ja voimaan jää paras tulos.
 
 
 ## Gitin muutoslogi
 
-Kuten olet kurssilla tähän mennessä oppinut, Git pitää kirjaa repositoriossa tapahtuvista muutoksista committien avulla. Kullakin commitilla on tekijä, id, viesti, sekä "parent", joka osoittaa aina edeltävään committiin. Yksi tapa esittää projektin historiaa tekstimuodossa voisikin olla seuraava esitystapa:
+Git pitää kirjaa repositorion muutoksista committien avulla. Kullakin commitilla on tekijä, id, viesti sekä "parent", joka osoittaa edeltävään committiin. Projektin historia voidaan esittää tekstimuodossa esimerkiksi näin:
 
 ```
 Commit 7b9f1e by NewbieNate (Parent: None)
@@ -73,9 +86,7 @@ Merge branch 'refactor' into master
 Merging the refactor changes. Thanks for the help, team! Learning and growing together.
 ```
 
-Tässä tehtävässä käsiteltävä data koostuu monirivisistä merkkijonoista, jotka esittävät kuvitteellisten projektien muutoshistoriaa yllä esitetyssä muodossa. Laajempi esimerkki löytyy erillisestä tiedostosta [commit-log-example.txt](./commit-log-example.txt).
-
-Esimerkiksi `ohjelmointi2`-nimisen käyttäjän yksittäinen commit, jonka id on `d4e5f6`, voisi näyttää seuraavalta:
+Tehtävän data koostuu monirivisistä merkkijonoista, jotka esittävät kuvitteellisten projektien muutoshistoriaa tässä muodossa. Laajempi esimerkki on tiedostossa [commit-log-example.txt](./commit-log-example.txt). Esimerkiksi käyttäjän `ohjelmointi2` yksittäinen commit, jonka id on `d4e5f6`, voisi näyttää tältä:
 
 ```java
 """
@@ -85,9 +96,7 @@ The message is two lines long...
 """
 ```
 
-Huomaa, että ensimmäisen commitin "Parent" on `"None"`. Kaikki muut commit id:t on esitetty tehtävässä kuuden merkin pituisina [aakkosnumeerisinä](https://fi.wiktionary.org/wiki/aakkosnumeerinen) merkkijonoina. "Commit messagen" pituus voi vaihdella, siihen voi kuulua yksi tai useampia rivejä, ja siinä saattaa olla mitä tahansa erikoismerkkejä, mukaan lukien emoji-merkkejä.
-
-Git-repositorioiden versiohistoriaa esitetään usein myös graafisessa muodossa, jossa samat commitit voitaisiin esittää esimerkiksi seuraavasti:
+Ensimmäisen commitin "Parent" on `None`. Muut commit-id:t ovat kuuden merkin pituisia [aakkosnumeerisia](https://fi.wiktionary.org/wiki/aakkosnumeerinen) merkkijonoja. Commit-viestissä voi olla yksi tai useampi rivi ja mitä tahansa erikoismerkkejä, myös emojeja. Graafisesti sama historia voidaan esittää esimerkiksi näin:
 
 ```mermaid
 gitGraph
@@ -104,96 +113,45 @@ gitGraph
 ```
 
 > [!IMPORTANT]
-> Vaikka tässä tehtävässä esimerkkinä on Gitin historian käsitteleminen, **sinun ei tarvitse käyttää yhtään uusia Git-komentoja**. Kaikki tehtävän logiikka toteutetaan käyttäen Javan merkkijonoja, metodeja ja luokkia.
-> 
-> Tyypillisesti isommassa projektissa on samanaikaisesti useampia kehityshaaroja, jolloin historia näyttää myös monimutkaisemmalta. Tällä kurssilla käytämme ainoastaan yhtä pääkehityshaaraa, joka on nimeltään `master` tai `main`.
+> Vaikka esimerkkinä on Gitin historia, **sinun ei tarvitse käyttää uusia Git-komentoja**. Kaikki logiikka toteutetaan Javan merkkijonoilla, metodeilla ja luokilla. Isommissa projekteissa on usein monta kehityshaaraa, mutta tällä kurssilla käytetään vain yhtä pääkehityshaaraa (`master` tai `main`).
 
-
-## Osa 0: ratkaisun suunnittelu *(valmistelut)*
-
-Aikaisemmista tehtävärepositorioista poiketen tätä tehtävää ei kannata välttämättä tehdä yksi vaihe kerrallaan, vaan sinun kannattaa perehtyä etukäteen kokonaisuuteen ja suunnitella, miten toteutat uudelleenkäytettäviä ratkaisuja, jotka edesauttavat tehtävän kaikkien osien ratkaisemista.
-
-Esimerkiksi uuden `Commit`-luokan luominen voi tuntua alussa "ylimääräiseltä työltä", mutta se voi olla pidemmän päälle kannattavaa. Voit myös jatkokehittää erilaisia apuluokkia tehtävää edistäessäsi oman harkintasi mukaan.
+**Ratkaisun suunnittelu.** Tätä tehtävää ei kannata tehdä osa kerrallaan, vaan perehdy ensin kokonaisuuteen ja suunnittele uudelleenkäytettävät ratkaisut, jotka auttavat kaikissa osissa. Esimerkiksi oma `Commit`-luokka voi tuntua aluksi ylimääräiseltä työltä, mutta se kannattaa pidemmän päälle.
 
 
 ## Osa 1: Commit ids *(soveltava, 20 %)*
 
-[`CommitIds`](./src/main/java/part01/CommitIds.java)-luokassa on metodi nimeltä `getCommitIds`. Tämä metodi saa parametrinaan monirivisen merkkijonon, joka sisältää edellä kuvitteellisen projektin Git-login ylempänä esitetyssä muodossa.
+Toteuta [CommitIds](./src/main/java/part01/CommitIds.java)-luokan metodi `getCommitIds`. Se saa parametrinaan monirivisen merkkijonon, jossa on kuvitteellisen projektin Git-loki yllä kuvatussa muodossa, ja palauttaa lokin committien id:t. Tarkempi kuvaus on metodin kommenteissa. Voit kirjoittaa apuluokkia, kuten `Commit`, samaan tiedostoon.
 
-Täydennä luokkaan ratkaisu, joka käsittelee merkkijonoa ja palauttaa siinä esiintyvien committien id:t. Tarkemman kuvauksen metodin toiminnasta löydät metodin kommenteista.
-
-Tehtävän tämä osa testataan [`CommitIdsTest`-testiluokalla](./src/test/java/part01/CommitIdsTest.java), jonka voit suorittaa joko koodieditorisi testaustyökalulla tai Gradlella:
-
-```
-./gradlew test --tests CommitIdsTest        # unix
-.\gradlew.bat test --tests CommitIdsTest    # windows
-```
+Arvioinnissa ajetaan testiluokka [CommitIdsTest](./src/test/java/part01/CommitIdsTest.java).
 
 
 ## Osa 2: Contributors and statistics *(edistynyt, 20 % + 20 %)*
 
-[`Contributors`](./src/main/java/part02/Contributors.java)-luokassa on metodit nimeltä `getContributors` sekä `groupCommitIdsByContributors`. Kuten edellisessä osassa, myös nämä metodit saavat parametrinaan monirivisen merkkijonon, joka sisältää edellä kuvitteellisen projektin Git-login ylempänä esitetyssä muodossa.
+Toteuta [Contributors](./src/main/java/part02/Contributors.java)-luokan metodit `getContributors` (tekijät ilman toistoja) ja `groupCommitIdsByContributors` (commit-id:t tekijöittäin mapissa) niiden kommenttien mukaisesti. Myös nämä metodit saavat parametrinaan Git-lokin monirivisenä merkkijonona.
 
-Täydennä luokkaan ratkaisut, jotka täyttävät näiden metodien kommenteissa mainitut toiminnallisuudet.
-
-Tehtävän tämä osa testataan kahdella erillisellä testiluokalla: [`GetContributorsTest`](./src/test/java/part02/GetContributorsTest.java) ja [`GroupCommitIdsTest`](./src/test/java/part02/GroupCommitIdsTest.java). Voit suorittaa testit joko koodieditorisi testaustyökalulla tai Gradlella:
-
-```
-# unix
-./gradlew test --tests GetContributorsTest
-./gradlew test --tests GroupCommitIdsTest
-
-# windows
-.\gradlew.bat test --tests GetContributorsTest
-.\gradlew.bat test --tests GroupCommitIdsTest
-```
+Arvioinnissa ajetaan testiluokat [GetContributorsTest](./src/test/java/part02/GetContributorsTest.java) (puolet pisteistä) ja [GroupCommitIdsTest](./src/test/java/part02/GroupCommitIdsTest.java) (puolet pisteistä).
 
 
-## Osa 3: Logitiedoston lukeminen, järjestäminen ja tulostaminen *(edistynyt, 40 %)*
+## Osa 3: lokitiedoston lukeminen, järjestäminen ja tulostaminen *(edistynyt, 40 %)*
 
-Tehtävän viimeisessä osassa käsiteltävänäsi on "commit log"-tiedosto [pizza-commits.txt](./pizza-commits.txt), jonka sisältämät **commitit ovat epäjärjestyksessä**. Lokitiedoston jokaisessa commitissa on tieto sitä edeltävästä "Parent"-commitista, joiden avulla sinun tulee tulostaa commitit kronologisessa järjestyksessä.
+Tiedoston [pizza-commits.txt](./pizza-commits.txt) **commitit ovat epäjärjestyksessä**. Jokaisessa commitissa on tieto edeltävästä "Parent"-commitista, ja niiden avulla sinun tulee tulostaa commitit kronologisessa järjestyksessä.
 
-Ohjelmasi suorituksen tulee käynnistyä tehtäväpohjassa valmiina olevasta Java-luokasta [part03.Main](./src/main/java/part03/Main.java). `main`-metodin lisäksi saat toteuttaa haluamasi apumetodit ja -luokat vapaasti. Kannustamme kirjoittamaan myös omia testejä ohjelmasi eri osien toimivuuden varmistamiseksi.
+Ohjelman pitää käynnistyä valmiin [part03.Main](./src/main/java/part03/Main.java)-luokan `main`-metodista. Sisäisen logiikan saat toteuttaa vapaasti omilla apumetodeilla ja -luokilla, kunhan:
 
-Sinulla on vapaat kädet toteuttaa ohjelman sisäinen logiikka parhaaksi katsomallasi tavalla, kunhan se täyttää seuraavat toiminnallisuudet:
+* ohjelma lukee commit-historian tiedostosta `pizza-commits.txt` (tiedostoa ei saa muokata),
+* ohjelma tulostaa ensin commitin, jonka "Parent" on "None", ja sen jälkeen jokaisen commitin oman "Parent"-commitinsa jälkeen,
+* jokainen commit tulostetaan samassa kolmirivisessä muodossa kuin tiedostossa (`Commit <id> by <tekijä> (Parent: <id>)`, otsikko ja viesti), ja committien väliin saa tulostaa tyhjän rivin, ja
+* ohjelma ei kysy syötteitä eikä tulosta mitään muuta.
 
-* Ohjelmasi ei saa kysyä käyttäjältä syötteitä eikä tulostaa tehtävänantoon kuulumattomia tekstejä.
-* Ohjelmasi tulee lukea commit-historia tehtäväpohjan tiedostosta nimeltä [pizza-commits.txt](./pizza-commits.txt). Tiedoston sisältö noudattaa samaa formaattia kuin aikaisemmat tehtävät.
-* Ohjelmasi tulee tulostaa tiedostosta luetut commitit järjestyksessä siten, että commit, jonka "Parent" on "None", esitetään ensimmäisenä. Seuraavien committien tulee aina seurata omaa "Parent"-committiaan.
-* Et saa muokata annettua tekstitiedostoa, vaan ohjelmasi on toimittava alkuperäisellä tiedostolla.
+Voit suorittaa ohjelman koodieditorissasi tai komennolla `./gradlew run` (Windowsissa `.\gradlew.bat run`).
 
-Voit suorittaa main-luokan joko koodieditorisi käyttöliittymässä tai Gradlen avulla:
+💡 *Vaikka tehtävässä järjestetään committeja, sitä ei voi ratkaista pelkällä lajittelualgoritmilla: kahta committia vertaamalla ei voi tietää, kumpi on ensin, elleivät ne ole toistensa "parent" ja "child". Sovella siis jotain muuta menetelmää. Tiedostojen lukemisessa auttavat Javan [Files](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/Files.html)- ja [Path](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/Path.html)-luokat, ja esimerkki niiden käytöstä on valmiina `main`-metodin pohjassa.*
 
-```
-./gradlew run       # unix
-.\gradlew.bat run   # windows
-```
+💡 *Projektin tiedostot on tallennettu UTF-8-merkistöllä. Jos merkistöjen kanssa on ongelmia, varmista, että koodissa ja editorissa on oikea merkistö. Eclipsen merkistön voi Windowsissa asettaa [tämän kuvan mukaisesti](https://ohjelmointi2.github.io/img/eclipse-workspace-encoding.jpg).*
 
-Tehtävä tarkastetaan [`PizzaCommitsTest`-yksikkötestiluokalla](./src/test/java/part03/PizzaCommitsTest.java), jonka voit suorittaa koodieditorillasi tai Gradlella:
-
-```
-./gradlew test --tests PizzaCommitsTest        # unix
-.\gradlew.bat test --tests PizzaCommitsTest    # windows
-```
-
-> [!NOTE]
-> Huomaa, että vaikka tehtävässä lajitellaan committeja, ei sitä välttämättä voi ratkaista ainakaan pelkän lajittelualgoritmin avulla. Tämä johtuu siitä, että kahta committia vertaillessa et voi tietää, kumpi tulee ensin, elleivät ne eivät ole toistensa "parent" ja "child". Sinun täytyy siis soveltaa jotain muuta menetelmää.
->
-> Kaikki projektin tiedostot on tallennettu UTF-8 -merkistöllä, joten jos kohtaat ongelmia merkistöjen kanssa, varmista että sekä koodissa että editorissasi on oikea merkistö. Windows-käyttäjät voivat määritellä Eclipsen merkistökoodauksen [tämän kuvan mukaisesti](https://ohjelmointi2.github.io/img/eclipse-workspace-encoding.jpg).
->
-> Tiedostojen lukemisessa sinua auttavat esimerkiksi Javan [File](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/Files.html)- ja [Path](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/Path.html)-luokat. Esimerkki näiden käyttämisestä löytyy valmiina `main`-metodin pohjasta.
+Arvioinnissa ajetaan testiluokka [PizzaCommitsTest](./src/test/java/part03/PizzaCommitsTest.java), joka ajaa `main`-metodin ja tarkistaa tulosteen rivien järjestyksen.
 
 
 ## Lisenssi ja tekijät
 
-Tämän tehtävän on kehittänyt Teemu Havulinna ja se on lisensoitu [Creative Commons BY-NC-SA -lisenssillä](https://creativecommons.org/licenses/by-nc-sa/4.0/).
-
-Tehtävässä esiintyvät commit log -tiedostot on luotu käyttäen apuna ChatGPT 3.5:ttä.
-
-Tehtävänannon sekä lähdekoodien toteutuksessa on hyödynnetty ChatGPT 3.5:ttä sekä GitHub copilot -tekoälyavustinta.
-
-## Ratkaisun tallentaminen
-
-Forkkaa tämä tehtäväpohja omaan GitHub-repositorioosi ja tallenna ratkaisusi omaan forkkiisi. Repositorio saa olla julkinen.
-
-Palauta ratkaisusi kurssijärjestelmään tehtävän sivulla.
+Tämän tehtävän ovat kehittäneet Teemu Havulinna ja Jukka Juslin, ja se on lisensoitu [Creative Commons BY-NC-SA -lisenssillä](https://creativecommons.org/licenses/by-nc-sa/4.0/). Tehtävänannon, lähdekoodien ja testien toteutuksessa on hyödynnetty ChatGPT 3.5 -kielimallia sekä GitHub Copilot -tekoälyavustinta. Tehtävän commit log -tiedostot on luotu ChatGPT 3.5:n avulla.

@@ -1,34 +1,49 @@
-# Applied task: "Commit history"
+# Applied exercise: "Commit History"
 
-This final course assignment repository contains various exercises designed to deepen and apply the topics from previous weeks. You have more freedom in solving these tasks, so you can approach them in many different ways.
+![Commit history as pizzas: each commit points to its parent commit, and the first parent is None](img/chapters/commits.svg)
 
-We recommend considering whether creating separate classes, stream operations, or even a map data structure might help in solving different problems.
+The last exercise repository of the course contains exercises that deepen and apply the topics of the previous weeks. The solutions have more freedom, so you can solve them in many ways. Consider whether separate classes, stream operations or a map would help.
 
-## Testing the tasks
+## Starting the exercise
 
-This task package includes ready-made tests to ensure the functionality of your solutions. The ready-made tests ensure that the end result of your code is correct. Since the freedom in solving the tasks is greater than before, you will likely need various helper methods and classes. To ensure their functionality, we recommend writing your own tests as well. Alternatively, you can write your own main methods to examine the functionality of your code.
+First fork this repository into your own GitHub repository with GitHub's **Fork** button, and only then clone your fork to your computer:
 
-Familiarizing yourself with the tests is not necessary to complete the task, but running the tests is highly recommended to get feedback on the functionality of your solutions.
+```sh
+git clone https://github.com/<your-github-username>/9-commit-history.git
+```
 
-You can run the unit tests as usual with your code editor's testing tool or with the Gradle automation tool.
+Open the cloned project in your code editor.
 
-> [!NOTE]
-> Changing the names, parameters, or return values of the methods and classes specified in the assignment is not allowed, but we **recommend** that you implement your own classes and methods in addition to them.
->
-> You may write additional tests if you wish, but do not modify or delete the pre-written tests.
+## Testing
 
-## Submitting the task
+The parts of the exercise have ready-made [JUnit](https://junit.org/) unit tests in the [src/test/java](./src/test/java/) directory. Each part tells which test class grades it. You can run the tests with your code editor's testing tool ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) or with [Gradle](https://docs.gradle.org/current/userguide/java_testing.html), for example:
 
-Solutions to this exercise are not graded by any GitHub Actions workflow (YAML), and `git push` does not start any grading. Grading is done by the course system: submit your solution on the exercise page in the course system, where your code is compiled and the exercise's JUnit tests are run.
+```
+./gradlew test --tests CommitIdsTest        # unix
+.\gradlew.bat test --tests CommitIdsTest    # windows
+```
 
-Finally, push everything to your public GitHub repository and press the **Lähetä tarkistettavaksi** (submit for checking) button on the exercise page. The course system's bot then fetches your code from your repository and checks it with the same tests.
+Add `--info` to the end of the command for more details about failing tests. You do not need to study how the tests are implemented, and you can also try your solution with your own `main` method. You may write more tests of your own, but do not change or remove the given tests.
 
-💡 *You can submit your solution as many times as needed until the chapter deadline. Your best result is kept.*
+Do not change the names, parameters or return types of the given classes, methods and constructors, because the tests will then not compile. You get the original version of a file back with `git restore <path to file>` or with the **Palauta lähtökoodi** (restore starter code) function of the course system.
+
+Because the solutions have more freedom than before, you will probably need helper methods and classes. **We recommend** writing your own tests or `main` methods for them.
+
+## Submitting and points
+
+Each part of the exercise has its own page in the course system (https://jtjuslin.kapsi.fi/java), and its code fields contain the part's starter code. Copy your solution into the code fields or write it there directly. **Testaa ilman palautusta** (test without submitting) runs the part's tests without saving points, and **Lähetä** (submit) submits your solution. Each test class is accepted only if all of its tests pass, and the points are divided according to the accepted test classes.
+
+**Points in two stages**
+
+1. When your solution passes in the course system, you get **half of the points** for the part.
+2. Finally, push everything to your public GitHub repository. Then press the **Lähetä tarkistettavaksi** (submit for checking) button on the part's page. When the tests pass, you get **full points** for the part. The repository may remain public.
+
+There is no grading YAML workflow (GitHub Actions) on GitHub, and `git push` does not start any grading. When you press **Lähetä tarkistettavaksi**, the course system's bot fetches your code from your repository and checks it with the same tests. Both stages must be completed before the chapter deadline. You can submit as many times as you need, and your best result is kept.
 
 
 ## Git change log
 
-As you have learned in the course so far, Git keeps track of changes in the repository using commits. Each commit has an author, id, message, and a "parent" that always points to the previous commit. One way to represent the project's history in text form could be the following format:
+Git keeps track of the changes in a repository with commits. Each commit has an author, an id, a message and a "parent" that points to the previous commit. The history of a project can be presented as text, for example like this:
 
 ```
 Commit 7b9f1e by NewbieNate (Parent: None)
@@ -68,9 +83,7 @@ Merge branch 'refactor' into master
 Merging the refactor changes. Thanks for the help, team! Learning and growing together.
 ```
 
-In this task, the data consists of multi-line strings that represent the change history of fictional projects in the format described above. A more extensive example can be found in a separate file [commit-log-example.txt](./commit-log-example.txt).
-
-For example, a single commit by a user named `ohjelmointi2` with the id `d4e5f6` might look like this:
+The data of this exercise consists of multi-line strings that present the change history of imaginary projects in this format. A larger example is in the file [commit-log-example.txt](./commit-log-example.txt). For example, a single commit with the id `d4e5f6` by the user `ohjelmointi2` could look like this:
 
 ```java
 """
@@ -80,9 +93,7 @@ The message is two lines long...
 """
 ```
 
-Note that the "Parent" of the first commit is `"None"`. All other commit ids are presented in the task as six-character [alphanumeric](https://en.wikipedia.org/wiki/Alphanumericals) strings. The length of the "Commit message" can vary, it can include one or more lines, and it may contain any special characters, including emoji.
-
-The version history of Git repositories is often also presented in graphical form, where the same commits could be represented, for example, as follows:
+The "Parent" of the first commit is `None`. The other commit ids are six-character [alphanumeric](https://en.wiktionary.org/wiki/alphanumeric) strings. A commit message can have one or more lines and any special characters, including emojis. Graphically, the same history can be presented like this, for example:
 
 ```mermaid
 gitGraph
@@ -99,85 +110,45 @@ gitGraph
 ```
 
 > [!IMPORTANT]
-> Although this task uses Git history as an example, **you do not need to use any new Git commands**. All task logic is implemented using Java strings, methods, and classes.
-> 
-> Typically, in a larger project, there are multiple development branches simultaneously, making the history appear more complex. In this course, we will use only one main development branch, named `master` or `main`.
+> Even though the example is Git's history, **you do not need any new Git commands**. All logic is implemented with Java strings, methods and classes. Larger projects often have many branches, but this course uses only one main branch (`master` or `main`).
 
-## Part 0: solution design *(preparation)*
+**Designing the solution.** It is not worth doing this exercise one part at a time. First study the whole and design reusable solutions that help in all parts. For example, your own `Commit` class may seem like extra work at first, but it pays off in the long run.
 
-Unlike previous task repositories, it might not be advisable to complete this task one step at a time. Instead, you should familiarize yourself with the entire task in advance and plan how to implement reusable solutions that will help solve all parts of the task.
 
-For example, creating a new `Commit` class might seem like "extra work" at first, but it can be beneficial in the long run. You can also further develop various helper classes as you progress with the task, according to your own judgment.
+## Part 1: Commit ids *(applying, 20 %)*
 
-## Part 1: commit ids *(applying, 20 %)*
+Implement the `getCommitIds` method of the [CommitIds](./src/main/java/part01/CommitIds.java) class. It takes a multi-line string containing the Git log of an imaginary project in the format described above and returns the ids of the commits in the log. A detailed description is in the method's comments. You can write helper classes, such as `Commit`, in the same file.
 
-The [`CommitIds`](./src/main/java/part01/CommitIds.java) class has a method named `getCommitIds`. This method takes a multi-line string as a parameter, which contains the Git log of the fictional project in the format described above.
+Graded with the test class [CommitIdsTest](./src/test/java/part01/CommitIdsTest.java).
 
-Complete the class with a solution that processes the string and returns the ids of the commits present in it. You can find a more detailed description of the method's functionality in the method comments.
-
-This part of the task is tested with the [`CommitIdsTest`](./src/test/java/part01/CommitIdsTest.java) test class, which you can run either with your code editor's testing tool or with Gradle:
-
-```
-./gradlew test --tests CommitIdsTest        # unix
-.\gradlew.bat test --tests CommitIdsTest    # windows
-```
 
 ## Part 2: Contributors and statistics *(advanced, 20 % + 20 %)*
 
-The [`Contributors`](./src/main/java/part02/Contributors.java) class has methods named `getContributors` and `groupCommitIdsByContributors`. Like in the previous part, these methods also take a multi-line string as a parameter, which contains the Git log of the fictional project in the format described above.
+Implement the methods `getContributors` (the authors without duplicates) and `groupCommitIdsByContributors` (the commit ids by author in a map) of the [Contributors](./src/main/java/part02/Contributors.java) class according to their comments. These methods also take the Git log as a multi-line string.
 
-Complete the class with solutions that fulfill the functionalities mentioned in the method comments.
+Graded with the test classes [GetContributorsTest](./src/test/java/part02/GetContributorsTest.java) (half of the points) and [GroupCommitIdsTest](./src/test/java/part02/GroupCommitIdsTest.java) (half of the points).
 
-This part of the task is tested with two separate test classes: [`GetContributorsTest`](./src/test/java/part02/GetContributorsTest.java) and [`GroupCommitIdsTest`](./src/test/java/part02/GroupCommitIdsTest.java). You can run the tests either with your code editor's testing tool or with Gradle:
 
-```
-# unix
-./gradlew test --tests GetContributorsTest
-./gradlew test --tests GroupCommitIdsTest
+## Part 3: reading, ordering and printing the log file *(advanced, 40 %)*
 
-# windows
-.\gradlew.bat test --tests GetContributorsTest
-.\gradlew.bat test --tests GroupCommitIdsTest
-```
+**The commits in the file [pizza-commits.txt](./pizza-commits.txt) are out of order.** Each commit tells its preceding "Parent" commit, and with them you need to print the commits in chronological order.
 
-## Part 3: reading, organizing, and printing the log file *(advanced, 40 %)*
+The program must start from the `main` method of the ready-made [part03.Main](./src/main/java/part03/Main.java) class. You may implement the internal logic freely with your own helper methods and classes, as long as:
 
-In the final part of the task, you will handle a "commit log" file [pizza-commits.txt](./pizza-commits.txt), where the **commits are out of order**. Each commit in the log file contains information about its preceding "Parent" commit, which you will use to print the commits in chronological order.
+* the program reads the commit history from the file `pizza-commits.txt` (do not modify the file),
+* the program first prints the commit whose "Parent" is "None" and then each commit after its own "Parent" commit,
+* each commit is printed in the same three-line format as in the file (`Commit <id> by <author> (Parent: <id>)`, title and message), and an empty line may be printed between commits, and
+* the program asks for no input and prints nothing else.
 
-Your program execution should start from the Java class [part03.Main](./src/main/java/part03/Main.java) provided in the task template. In addition to the `main` method, you are free to implement any helper methods and classes as you see fit. We encourage you to write your own tests to ensure the functionality of different parts of your program.
+You can run the program in your code editor or with `./gradlew run` (on Windows `.\gradlew.bat run`).
 
-You have the freedom to implement the internal logic of the program in the way you deem best, as long as it meets the following functionalities:
+💡 *Even though the exercise orders commits, it cannot be solved with a sorting algorithm alone: by comparing two commits, you cannot know which one comes first unless they are each other's "parent" and "child". So apply some other method. Java's [Files](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/Files.html) and [Path](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/Path.html) classes help with reading files, and an example of using them is ready in the `main` method template.*
 
-* Your program should not ask the user for inputs or print texts unrelated to the task description.
-* Your program should read the commit history from the file named [pizza-commits.txt](./pizza-commits.txt) provided in the task template. The file content follows the same format as previous tasks.
-* Your program should print the commits read from the file in order, starting with the commit whose "Parent" is "None". Subsequent commits should always follow their respective "Parent" commits.
-* You must not modify the given text file; your program should work with the original file.
+💡 *The project files are saved in UTF-8. If you have problems with character encodings, make sure that both your code and your editor use the right encoding. On Windows, you can set Eclipse's encoding [as shown in this image](https://ohjelmointi2.github.io/img/eclipse-workspace-encoding.jpg).*
 
-You can run the main class either through your code editor's interface or using Gradle:
+Graded with the test class [PizzaCommitsTest](./src/test/java/part03/PizzaCommitsTest.java), which runs the `main` method and checks the order of the output lines.
 
-```
-./gradlew run       # unix
-.\gradlew.bat run   # windows
-```
-
-The task is checked with the [`PizzaCommitsTest`](./src/test/java/part03/PizzaCommitsTest.java) unit test class, which you can run with your code editor or Gradle:
-
-```
-./gradlew test --tests PizzaCommitsTest        # unix
-.\gradlew.bat test --tests PizzaCommitsTest    # windows
-```
-
-> [!NOTE]
-> Note that although the task involves sorting commits, it may not be solvable using just a sorting algorithm. This is because when comparing two commits, you cannot know which one comes first unless they are "parent" and "child" to each other. Therefore, you will need to apply some other method.
->
-> All project files are saved with UTF-8 encoding, so if you encounter character encoding issues, ensure that both your code and editor are set to the correct encoding. Windows users can set the encoding in Eclipse as shown in [this image](https://ohjelmointi2.github.io/img/eclipse-workspace-encoding.jpg).
->
-> For reading files, Java's [File](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/Files.html) and (https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/Path.html) classes can be helpful. An example of using these can be found in the `main` method template.
 
 ## License and authors
 
-This exercise is made by Teemu Havulinna and translated to English by Kalle Ilves and it is licensed under a [Creative Commons BY-NC-SA license](https://creativecommons.org/licenses/by-nc-sa/4.0/).
-
-The commit log files used in the task were created with the help of ChatGPT 3.5.
-
-ChatGPT 3.5 language model and GitHub copilot AI assistant has been used to implement the exercise.
+This exercise was developed by Teemu Havulinna and Jukka Juslin, and it is licensed under the [Creative Commons BY-NC-SA license](https://creativecommons.org/licenses/by-nc-sa/4.0/). ChatGPT 3.5 and GitHub Copilot were used in creating the assignment, the source code and the tests. The commit log files of the exercise were created with the help of ChatGPT 3.5.
